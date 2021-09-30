@@ -1,0 +1,19 @@
+dist: bionic
+
+language: python
+
+services: docker
+
+install:
+  - pip install -r requirements.txt
+  - pip install -U pytest
+  - pip install coverage
+  - pip install flake8
+
+
+script:
+  - coverage run --source src -m pytest tests/*.py
+  - coverage report --fail-under=0
+
+after_script:
+  - echo ${DOCKER}
